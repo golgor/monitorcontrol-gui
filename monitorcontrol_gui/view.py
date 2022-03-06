@@ -14,6 +14,15 @@ class View(QMainWindow):
         self.ui.setupUi(self)
         self.ui.buttonSet.clicked.connect(self.click_button)
 
+        self.model.query_monitors()
+        self.ui.monitorComboBox.addItem("0: All")
+        self.ui.monitorComboBox.addItems([
+            f"{monitor.idx}: {monitor.model}"
+            for monitor in self.model.monitors
+        ])
+        self.ui.monitorComboBox.setCurrentIndex(0)
+
     def click_button(self) -> None:
         value = int(self.ui.luminanceValueLabel.text())
-        self.ctrl.set_luminosity(value)
+        idx = int(self.ui.monitorComboBox.currentText().split(":")[0])
+        self.ctrl.set_luminosity(value, idx)

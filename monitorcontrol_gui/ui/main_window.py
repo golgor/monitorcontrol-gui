@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QMainWindow,
-    QMenuBar, QPushButton, QSizePolicy, QSlider,
-    QStatusBar, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
+    QMainWindow, QMenuBar, QPushButton, QSizePolicy,
+    QSlider, QStatusBar, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -52,6 +52,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.luminanceValueLabel)
 
+        self.monitorComboBox = QComboBox(self.centralwidget)
+        self.monitorComboBox.setObjectName(u"monitorComboBox")
+        self.monitorComboBox.setGeometry(QRect(270, 20, 161, 26))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -73,5 +76,7 @@ class Ui_MainWindow(object):
         self.buttonReset.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
         self.luminanceLabel.setText(QCoreApplication.translate("MainWindow", u"Luminance:", None))
         self.luminanceValueLabel.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.monitorComboBox.setCurrentText("")
+        self.monitorComboBox.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Monitors", None))
     # retranslateUi
 
