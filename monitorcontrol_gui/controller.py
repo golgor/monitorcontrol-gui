@@ -18,12 +18,12 @@ class Controller:
         """
         print(f"{idx=}: {value=}")
         if idx:
-            monitor = self.model.monitors[idx - 1]
+            monitor = self.model._monitors[idx - 1]
             with monitor.obj as mon:
                 mon.set_luminance(value)
             return
 
-        for monitor in self.model.monitors:
+        for monitor in self.model._monitors:
             with monitor.obj as mon:
                 mon.set_luminance(value)
         return

@@ -1,5 +1,5 @@
-import monitorcontrol as mc
 from dataclasses import dataclass
+import monitorcontrol as mc
 
 
 @dataclass
@@ -12,7 +12,10 @@ class Monitor:
 
 class Model:
     def __init__(self) -> None:
-        self.monitors: list[Monitor] = []
+        self._monitors: list[Monitor] = []
+
+    def set_monitors(self, monitors: list[Monitor]) -> None:
+        self._monitors = monitors
 
     def query_monitors(self) -> None:
         for idx, monitor_obj in enumerate(mc.get_monitors(), 1):
@@ -20,10 +23,6 @@ class Model:
                 capabilities = monitor.get_vcp_capabilities()
                 luminance = monitor.get_luminance()
 
-            self.monitors.append(
+            self._monitors.append(
                 Monitor(monitor_obj, idx, capabilities["model"], luminance)
             )
-
-
-class Worker:
-    pass
